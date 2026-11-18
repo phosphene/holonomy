@@ -14,6 +14,8 @@ from phosphene.holonomy.macroevo.master_equation import (
     MasterEquationParams,
     construct_transition_matrix,
     solve_master_equation,
+    compute_etienne_branching_loglik,
+    profile_etienne_k,
 )
 from phosphene.holonomy.macroevo.phylogenetic_dr import (
     TipDRAudit,
@@ -27,6 +29,17 @@ from phosphene.holonomy.macroevo.primitives import (
     log_poisson_occurrences,
     regularized_inverse_branch_length,
     tip_diversification_rate,
+)
+from phosphene.holonomy.macroevo.galapagos import (
+    ColonistStatus,
+    GalapagosClade,
+    GalapagosDataset,
+    load_galapagos_csv,
+    load_galapagos_json,
+)
+from phosphene.holonomy.macroevo.comparative_metrics import (
+    DomainComparisonReport,
+    generate_canonical_comparison,
 )
 
 __all__ = [
@@ -43,9 +56,18 @@ __all__ = [
     "MasterEquationParams",
     "construct_transition_matrix",
     "solve_master_equation",
+    "compute_etienne_branching_loglik",
+    "profile_etienne_k",
     "TipDRAudit",
     "parse_simple_newick",
     "audit_tree_diversification_rates",
     "FossilTaxonRecord",
     "compute_joint_taphonomic_likelihood",
+    "ColonistStatus",
+    "GalapagosClade",
+    "GalapagosDataset",
+    "load_galapagos_csv",
+    "load_galapagos_json",
+    "DomainComparisonReport",
+    "generate_canonical_comparison",
 ]

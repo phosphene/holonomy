@@ -5,12 +5,11 @@ build-backend = "hatchling.build"
 [project]
 name = "phosphene-holonomy"
 version = "0.1.0"
-description = "Differential-geometric and data-preserving execution primitives for morphodynamic and sedimentological transport"
+description = "Differential-geometric, data-preserving, and macroevolutionary diversification primitives"
 readme = "README.md"
 requires-python = ">=3.11"
-license = "MIT"
 authors = [
-    { name = "Phosphene Team", email = "flow@ind.media" },
+    { name = "Phosphene Team", email = "flow@ind.media" }
 ]
 dependencies = [
     "numpy>=1.24",
@@ -19,6 +18,12 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+dev = [
+    "pytest>=8.3.4",
+    "hypothesis>=6.152.1",
+]
+
+[dependency-groups]
 dev = [
     "pytest>=8.3.4",
     "hypothesis>=6.152.1",
