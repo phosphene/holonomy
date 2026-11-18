@@ -32,6 +32,9 @@ holonomy.Manifold M₀ ───────────────► holonomy
 
 ## 2. Data-Preserving Execution Architecture
 
+### Trajectory Preservation by Definition
+Replacing PyRate requires eliminating destructive in-place array mutations (overwriting memory buffers during time-stepping). Because **holonomy is an invariant of a path rather than an isolated grid**, the name makes data preservation a mathematical prerequisite: computing a path-dependent residue requires keeping both the reference manifold $\mathcal{M}_0$ (the untouched initial bathymetry) and the ordered state lineage (every intermediate bed configuration along the forcing curve).
+
 - **Immutable State Transitions (`SurfaceState`)**: Advancing the Exner equation returns a newly allocated elevation field paired with a zero-copy reference to the static horizontal mesh (eliminating the in-place buffer overwrites that caused PyRate to destroy historical data while avoiding redundant coordinate duplication).
 - **Explicit Trajectory Graphs (`holonomy.Trace`)**: Chaining steps along a `Loop` records a directed lineage of snapshots (enabling instant rollback, mass-conservation audits across arbitrary time windows, and clean differentiation through transport closures).
 
