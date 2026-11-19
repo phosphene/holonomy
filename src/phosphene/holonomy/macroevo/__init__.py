@@ -41,6 +41,20 @@ from phosphene.holonomy.macroevo.comparative_metrics import (
     DomainComparisonReport,
     generate_canonical_comparison,
 )
+from phosphene.holonomy.macroevo.escalation import (
+    BranchingState,
+    BranchingTrace,
+    ScientistEscalationReport,
+    rung0_pure_death_logprob,
+    rung0_constant_rate_loglik,
+    assemble_metzler_generator,
+    propagate_uniformized,
+    propagate_dense_pade,
+    propagate_sparse_krylov,
+    step_interval_vertex,
+    step_observation_vertex,
+    evaluate_with_escalation_ladder,
+)
 
 __all__ = [
     "log_diversity_hazard",
@@ -70,4 +84,16 @@ __all__ = [
     "load_galapagos_json",
     "DomainComparisonReport",
     "generate_canonical_comparison",
+    "BranchingState",
+    "BranchingTrace",
+    "ScientistEscalationReport",
+    "rung0_pure_death_logprob",
+    "rung0_constant_rate_loglik",
+    "assemble_metzler_generator",
+    "propagate_uniformized",
+    "propagate_dense_pade",
+    "propagate_sparse_krylov",
+    "step_interval_vertex",
+    "step_observation_vertex",
+    "evaluate_with_escalation_ladder",
 ]
