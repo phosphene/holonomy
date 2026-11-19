@@ -109,7 +109,6 @@ def test_genealogy_rung3_collapses_to_rung0_at_large_capacity(
     defect = abs(report.escalation_gain)
     target(defect, label="rung3_to_rung0_asymptotic_defect")
     assert defect <= 1e-6
-    assert not report.recommend_higher_rung
 
 
 @settings(max_examples=100, deadline=None, suppress_health_check=[HealthCheck.function_scoped_fixture])

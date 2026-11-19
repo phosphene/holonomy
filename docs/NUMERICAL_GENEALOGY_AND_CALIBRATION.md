@@ -71,12 +71,12 @@ Instead, `holonomy` organizes its numerical primitives along the standard geneal
 * **Mathematical structure:** Couples state-dependent throttling ($\lambda(k + j) = \max(0, \lambda_0 (1 - (k + j) / K))$) with interleaved continuous flow and discrete observation events along a non-abelian control path.
 * **Genealogical link to Rung 2:** As $\text{headroom} = K - k \to \infty$, the commutator defect $[\text{flow}(dt), \text{observe\_split}]$ shrinks smoothly toward the density-independent Rung 2 limit.
 
-### The Scientist's Escalation Ladder
+### The Background Realization (Kneebone Reference Touch-Point)
 
-To let researchers decide rationally whether higher-level mathematics improves their model, `holonomy` pairs every Rung 3 evaluation with a **Rung 0 Baseline Escalation Report**:
+In projective and higher-order geometries, the Euclidean background provides an invariant touch-point—not as a constraint or gating mechanism, but as a legible reference ground. Analogously, `holonomy` pairs every Rung 3 evaluation with a **Rung 0 Background Realization Report**:
 
 1. Evaluate the dataset at **Rung 0** (uncoupled scalar closed form).
 2. Evaluate the dataset at **Rung 3** (capacity-bounded matrix semigroup).
-3. Inspect the **Escalation Gain** $\Delta \ln L = \ln L_{\text{rung3}} - \ln L_{\text{rung0}}$ alongside `CapacityEdge.regime`:
-  * If $|\Delta \ln L| < \text{threshold}$ (for instance, $< 0.5$ log-likelihood units on a small 3-to-5 taxon tree), the dataset lacks power to distinguish finite carrying capacity from unbounded growth; the scientist should report the simpler Rung 0 model.
-  * If $\Delta \ln L$ is significant and `CapacityEdge.regime` enters `boundary_grazing` or `saturated_ceiling`, escalating to Rung 3 is empirically justified.
+3. Report the **Likelihood Delta** $\Delta \ln L = \ln L_{\text{rung3}} - \ln L_{\text{rung0}}$ alongside `CapacityEdge.regime`:
+  * Enables researchers to inspect the exact empirical difference between uncoupled baseline growth and higher-order capacity-bounded dynamics.
+  * Preserves full autonomy for researchers to deploy complex modeling apparatuses while keeping numerical divergence and asymptotic touch-points completely transparent.

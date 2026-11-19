@@ -185,36 +185,47 @@ def step_observation_vertex(st_curr: BranchingState, lam0: float, K: float) -> B
 
 
 @dataclass(frozen=True)
-class ScientistEscalationReport:
-    """Evaluates whether dataset information content justifies escalating beyond Rung 0."""
+class BackgroundRealizationReport:
+    """Evaluates higher-order dynamics against the Rung 0 analytical background realization.
+
+    Serves as an exact, invariant touch-point (Kneebone background realization)
+    reporting the empirical log-likelihood delta without imposing gating thresholds
+    or prescribing modeling choices.
+    """
 
     rung0_loglik: float
     rung3_loglik: float
-    escalation_gain: float
-    recommend_higher_rung: bool
+    delta_loglik: float
     bottleneck_regime: str
 
+    @property
+    def escalation_gain(self) -> float:
+        """Alias for delta_loglik."""
+        return self.delta_loglik
 
-def evaluate_with_escalation_ladder(
+
+# Backward compatibility alias
+ScientistEscalationReport = BackgroundRealizationReport
+
+
+def evaluate_with_background_realization(
     branching_times: Sequence[float],
     lam0: float,
     mu0: float,
     K: float,
     propagator: Callable[[np.ndarray, np.ndarray, float], np.ndarray] = propagate_dense_pade,
-    min_gain_threshold: float = 0.5,
-) -> ScientistEscalationReport:
-    """Pairwise evaluation across Rung 0 and Rung 3 to compute empirical escalation gain."""
+) -> BackgroundRealizationReport:
+    """Pairwise evaluation across Rung 0 background realization and Rung 3 dynamics."""
     brts = tuple(sorted(branching_times, reverse=True))
     lnL_r0 = rung0_constant_rate_loglik(brts, lam0=lam0, mu0=mu0)
 
     k_max = len(brts) + 1
     bottleneck = CapacityEdge(k=k_max, K=K)
     if bottleneck.regime == "saturated_ceiling":
-        return ScientistEscalationReport(
+        return BackgroundRealizationReport(
             rung0_loglik=lnL_r0,
             rung3_loglik=-math.inf,
-            escalation_gain=-math.inf,
-            recommend_higher_rung=False,
+            delta_loglik=-math.inf,
             bottleneck_regime=bottleneck.regime,
         )
 
@@ -234,10 +245,13 @@ def evaluate_with_escalation_ladder(
 
     lnL_r3 = trace.current.lnL + math.log(max(float(trace.current.P[0]), 1e-300))
     gain = lnL_r3 - lnL_r0
-    return ScientistEscalationReport(
+    return BackgroundRealizationReport(
         rung0_loglik=lnL_r0,
         rung3_loglik=lnL_r3,
-        escalation_gain=gain,
-        recommend_higher_rung=bool(gain >= min_gain_threshold),
+        delta_loglik=gain,
         bottleneck_regime=bottleneck.regime,
     )
+
+
+# Backward compatibility alias
+evaluate_with_escalation_ladder = evaluate_with_background_realization
